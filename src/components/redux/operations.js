@@ -1,4 +1,3 @@
-import React from "react";
 import {
   fetchAllUsers,
   addUser,
@@ -18,7 +17,7 @@ export const fetchUsers = () => async (dispatch) => {
   }
 };
 
-export const deletePost = (id) => async (dispatch) => {
+export const deleteUser = (id) => async (dispatch) => {
   dispatch(actions.deleteUserRequest());
   try {
     await fetchdeleteUser(id);
@@ -28,27 +27,28 @@ export const deletePost = (id) => async (dispatch) => {
   }
 };
 
-export const createPost = (user) => async (dispatch) => {
+export const createUser = (user) => async (dispatch) => {
   dispatch(actions.addUserRequest());
   try {
-    const newUser = await addUser(post);
+    const newUser = await addUser(user);
     dispatch(actions.addUserSuccess(newUser));
   } catch (error) {
     dispatch(actions.addUserError(error));
   }
 };
 
-export const editPost = (user, id) => async (dispatch) => {
+export const editUser = (user, id) => async (dispatch) => {
   dispatch(actions.updUserRequest());
   try {
     const newUser = await updUser(user, id);
+    console.log("newUser", newUser);
     dispatch(actions.updUserSuccess(newUser));
   } catch (error) {
     dispatch(actions.updUserError(error));
   }
 };
 
-export const findPost = (id) => async (dispatch) => {
+export const findUser = (id) => async (dispatch) => {
   dispatch(actions.filterRequest());
   try {
     const newId = await filterUser(id);

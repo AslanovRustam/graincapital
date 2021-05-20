@@ -13,3 +13,8 @@ p {
   border: 1px solid rgba(67, 13, 214, 0.116);
   padding: 5px;
 }
+
+.buttonContainer {
+  display: flex;
+  /* justify-content: space-between; */
+}
