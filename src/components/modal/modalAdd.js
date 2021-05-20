@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import shortid, { generate } from "shortid";
 import { useDispatch } from "react-redux";
 import { createPortal } from "react-dom";
@@ -13,6 +13,20 @@ export default function ModalAdd({ onClose }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [website, setwebsite] = useState("");
+  const [validForm, setValidForm] = useState(false);
+
+  useEffect(() => {
+    if (
+      companyName.length < 1 ||
+      name.length < 1 ||
+      email.length < 1 ||
+      website.length < 1
+    ) {
+      setValidForm(false);
+    } else {
+      setValidForm(true);
+    }
+  }, [companyName, name, email, website]);
 
   const dispatch = useDispatch();
 
@@ -65,13 +79,6 @@ export default function ModalAdd({ onClose }) {
     onClose();
   };
 
-  //   let companyName = user.company.name;
-  //   company = companyName;
-
-  //   const createUser = (e) => {
-  //     dispatch(operations.createUser(user));
-  //     onClose();
-  //   };
   return createPortal(
     <div className={s.Modal__backdrop} onClick={handleBackdropClick}>
       <form className={s.formtStyle} onSubmit={handleSubmit}>
@@ -91,8 +98,9 @@ export default function ModalAdd({ onClose }) {
           Wbsite
           <input value={website} onChange={handleChangeWebsite}></input>
         </label>
-        {/* <button type="submit" onClick={() => createUser()}> */}
-        <button type="submit">Add</button>
+        <button disabled={!validForm} type="submit">
+          Add
+        </button>
       </form>
     </div>,
     modalRoot

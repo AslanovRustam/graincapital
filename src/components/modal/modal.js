@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { createPortal } from "react-dom";
 import * as operations from "../redux/operations";
@@ -11,6 +11,20 @@ export default function Modal({ onClose, user }) {
   const [name, setName] = useState(user.name);
   const [email, setEmail] = useState(user.email);
   const [website, setwebsite] = useState(user.website);
+  const [validForm, setValidForm] = useState(false);
+
+  useEffect(() => {
+    if (
+      companyN.length < 1 ||
+      name.length < 1 ||
+      email.length < 1 ||
+      website.length < 1
+    ) {
+      setValidForm(false);
+    } else {
+      setValidForm(true);
+    }
+  }, [companyN, name, email, website]);
 
   const dispatch = useDispatch();
 
@@ -79,21 +93,30 @@ export default function Modal({ onClose, user }) {
       <form className={s.formtStyle} onSubmit={handleSubmit}>
         <label>
           Company name
-          <input value={companyN} onChange={handleChangeCompany}></input>
+          <input value={companyN} required onChange={handleChangeCompany} />
         </label>
         <label>
           Name
-          <input value={name} onChange={handleChangeName}></input>
+          <input value={name} required onChange={handleChangeName}></input>
         </label>
         <label>
           Email
-          <input value={email} onChange={handleChangeEmail}></input>
+          <input
+            value={email}
+            type="email"
+            required
+            onChange={handleChangeEmail}
+          ></input>
         </label>
         <label>
           Wbsite
-          <input value={website} onChange={handleChangeWebsite}></input>
+          <input
+            value={website}
+            required
+            onChange={handleChangeWebsite}
+          ></input>
         </label>
-        <button type="submit" onClick={() => editPost()}>
+        <button disabled={!validForm} type="submit" onClick={() => editPost()}>
           Edit
         </button>
       </form>
