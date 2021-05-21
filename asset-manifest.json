@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/graincapital/static/css/main.503d4f0d.chunk.css",
+    "main.js": "/graincapital/static/js/main.e202ca2a.chunk.js",
+    "main.js.map": "/graincapital/static/js/main.e202ca2a.chunk.js.map",
+    "runtime-main.js": "/graincapital/static/js/runtime-main.952da585.js",
+    "runtime-main.js.map": "/graincapital/static/js/runtime-main.952da585.js.map",
+    "static/js/2.9d3b8aeb.chunk.js": "/graincapital/static/js/2.9d3b8aeb.chunk.js",
+    "static/js/2.9d3b8aeb.chunk.js.map": "/graincapital/static/js/2.9d3b8aeb.chunk.js.map",
+    "static/js/3.75bebb5f.chunk.js": "/graincapital/static/js/3.75bebb5f.chunk.js",
+    "static/js/3.75bebb5f.chunk.js.map": "/graincapital/static/js/3.75bebb5f.chunk.js.map",
+    "index.html": "/graincapital/index.html",
+    "static/css/main.503d4f0d.chunk.css.map": "/graincapital/static/css/main.503d4f0d.chunk.css.map",
+    "static/js/2.9d3b8aeb.chunk.js.LICENSE.txt": "/graincapital/static/js/2.9d3b8aeb.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.952da585.js",
+    "static/js/2.9d3b8aeb.chunk.js",
+    "static/css/main.503d4f0d.chunk.css",
+    "static/js/main.e202ca2a.chunk.js"
+  ]
+}
