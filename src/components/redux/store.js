@@ -16,16 +16,12 @@ const userReducer = createReducer([], {
   [actions.updUserSuccess]: (state, action) => {
     return state.map((user) => {
       if (action.payload.id === user.id) {
-        console.log("action.payload.id", action.payload.id);
-        console.log("user.id", user.id);
-        console.log("action.payload", action.payload);
         return { ...action.payload };
       }
       return user;
     });
   },
   [actions.filterSuccess]: (state, action) => {
-    console.log("action.payload", action.payload);
     return action.payload;
   },
 });

@@ -6,10 +6,30 @@ import User from "./user";
 import Modal from "../modal/modal";
 import ModalAdd from "../modal/modalAdd";
 import s from "./user.module.css";
+import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+import PersonAddSharpIcon from "@material-ui/icons/PersonAddSharp";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import CardActions from "@material-ui/core/CardActions";
+import DeleteIcon from "@material-ui/icons/Delete";
+import EditSharpIcon from "@material-ui/icons/EditSharp";
+import Container from "@material-ui/core/Container";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    "& > *": {
+      margin: theme.spacing(1),
+      justifyContent: "center",
+    },
+    button: {
+      margin: theme.spacing(1),
+    },
+  },
+}));
 
 export default function UserList() {
+  const classes = useStyles();
   const users = useSelector((state) => state.users);
-  console.log("users", users);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -17,7 +37,6 @@ export default function UserList() {
   }, []);
 
   function deleteUserById(id) {
-    console.log("id", id);
     dispatch(operations.deleteUser(id));
   }
 
@@ -27,33 +46,59 @@ export default function UserList() {
 
   const toggleModalAdd = (user) => {
     setShowmodalAdd(!showModalAdd);
-    // setCurrentPost(user);
   };
-
-  console.log("currentPost", currentPost);
 
   const toggleModal = (user) => {
     setShowmodal(!showModal);
     setCurrentPost(user);
   };
 
+  function changeBackground(user) {
+    document.getElementById(`${user.id}`).style.backgroundColor = "#5fcfe8";
+  }
+
   return (
     <>
-      <div>
-        <button type="button" onClick={(e) => toggleModalAdd()}>
-          Add
-        </button>
+      <div className={classes.root}>
+        <CssBaseline />
+        <Container component="main" maxWidth="xs">
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            className={classes.button}
+            startIcon={<PersonAddSharpIcon />}
+            type="button"
+            onClick={(e) => toggleModalAdd()}
+          >
+            Add
+          </Button>
+        </Container>
         <ul>
           {users.map((user) => (
-            <li className={s.elementPostCard} key={user.id}>
+            <li id={user.id} className={s.elementUserCard} key={user.id}>
               <User user={user} />
               <div className={s.buttonContainer}>
-                <button type="button" onClick={() => deleteUserById(user.id)}>
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  className={classes.button}
+                  startIcon={<DeleteIcon />}
+                  type="button"
+                  onClick={() => deleteUserById(user.id)}
+                >
                   Delete
-                </button>
-                <button type="button" onClick={(e) => toggleModal(user)}>
+                </Button>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  className={classes.button}
+                  endIcon={<EditSharpIcon>Edit</EditSharpIcon>}
+                  type="button"
+                  onClick={(e) => (changeBackground(user), toggleModal(user))}
+                >
                   Edit
-                </button>
+                </Button>
               </div>
             </li>
           ))}

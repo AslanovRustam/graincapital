@@ -3,10 +3,37 @@ import { useDispatch } from "react-redux";
 import { createPortal } from "react-dom";
 import * as operations from "../redux/operations";
 import s from "./modal.module.css";
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import TextField from "@material-ui/core/TextField";
+import { makeStyles } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
+import SaveIcon from "@material-ui/icons/Save";
+
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+
+  form: {
+    width: "100%", // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+  button: {
+    margin: theme.spacing(1),
+  },
+}));
 
 const modalRoot = document.querySelector("#modal-root");
 
 export default function Modal({ onClose, user }) {
+  const classes = useStyles();
   const [companyN, setCompany] = useState(user.company.name);
   const [name, setName] = useState(user.name);
   const [email, setEmail] = useState(user.email);
@@ -52,13 +79,8 @@ export default function Modal({ onClose, user }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log();
   };
 
-  //   const editPost = (e) => {
-  //     dispatch(operations.editUser({ name, email, website }, user.id));
-  //     onClose();
-  //     };
   const editPost = (e) => {
     dispatch(
       operations.editUser(
@@ -89,38 +111,83 @@ export default function Modal({ onClose, user }) {
   };
 
   return createPortal(
-    <div className={s.Modal__backdrop} onClick={handleBackdropClick}>
-      <form className={s.formtStyle} onSubmit={handleSubmit}>
-        <label>
-          Company name
-          <input value={companyN} required onChange={handleChangeCompany} />
-        </label>
-        <label>
-          Name
-          <input value={name} required onChange={handleChangeName}></input>
-        </label>
-        <label>
-          Email
-          <input
-            value={email}
-            type="email"
-            required
-            onChange={handleChangeEmail}
-          ></input>
-        </label>
-        <label>
-          Wbsite
-          <input
-            value={website}
-            required
-            onChange={handleChangeWebsite}
-          ></input>
-        </label>
-        <button disabled={!validForm} type="submit" onClick={() => editPost()}>
-          Edit
-        </button>
-      </form>
-    </div>,
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <div className={classes.paper}>
+        <div className={s.Modal__backdrop} onClick={handleBackdropClick}>
+          <form className={s.formtStyle} onSubmit={handleSubmit}>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="Companyname"
+              label="Company name"
+              name="Companyname"
+              autoFocus
+              value={companyN}
+              required
+              onChange={handleChangeCompany}
+            />
+            {/* <input value={companyN} required onChange={handleChangeCompany} /> */}
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="name"
+              label="Name"
+              name="name"
+              autoComplete="name"
+              value={name}
+              required
+              onChange={handleChangeName}
+            />
+
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              value={email}
+              type="email"
+              required
+              onChange={handleChangeEmail}
+            />
+
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="website"
+              label="Website"
+              name="website"
+              value={website}
+              required
+              onChange={handleChangeWebsite}
+            />
+
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              className={classes.button}
+              startIcon={<SaveIcon />}
+              disabled={!validForm}
+              type="submit"
+              onClick={() => editPost()}
+            >
+              Edit
+            </Button>
+          </form>
+        </div>
+      </div>
+    </Container>,
     modalRoot
   );
 }
