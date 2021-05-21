@@ -119,7 +119,6 @@ export default function Modal({ onClose, user }) {
             <TextField
               variant="outlined"
               margin="normal"
-              required
               fullWidth
               id="Companyname"
               label="Company name"
@@ -140,7 +139,6 @@ export default function Modal({ onClose, user }) {
               name="name"
               autoComplete="name"
               value={name}
-              required
               onChange={handleChangeName}
             />
 
@@ -155,7 +153,6 @@ export default function Modal({ onClose, user }) {
               autoComplete="email"
               value={email}
               type="email"
-              required
               onChange={handleChangeEmail}
             />
 
@@ -168,7 +165,6 @@ export default function Modal({ onClose, user }) {
               label="Website"
               name="website"
               value={website}
-              required
               onChange={handleChangeWebsite}
             />
 

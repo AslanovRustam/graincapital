@@ -16,7 +16,7 @@ p {
 
 .buttonContainer {
   display: flex;
-  /* justify-content: space-between; */
+  justify-content: space-between;
 }
 .elementUserCard {
   margin: 2px;

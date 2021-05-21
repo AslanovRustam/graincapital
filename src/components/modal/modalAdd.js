@@ -5,7 +5,6 @@ import { createPortal } from "react-dom";
 import * as operations from "../redux/operations";
 import s from "./modal.module.css";
 import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";

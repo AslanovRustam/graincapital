@@ -41,7 +41,6 @@ export const editUser = (user, id) => async (dispatch) => {
   dispatch(actions.updUserRequest());
   try {
     const newUser = await updUser(user, id);
-    console.log("newUser", newUser);
     dispatch(actions.updUserSuccess(newUser));
   } catch (error) {
     dispatch(actions.updUserError(error));

@@ -9,8 +9,6 @@ import s from "./user.module.css";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import PersonAddSharpIcon from "@material-ui/icons/PersonAddSharp";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import CardActions from "@material-ui/core/CardActions";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditSharpIcon from "@material-ui/icons/EditSharp";
 import Container from "@material-ui/core/Container";
@@ -60,7 +58,6 @@ export default function UserList() {
   return (
     <>
       <div className={classes.root}>
-        <CssBaseline />
         <Container component="main" maxWidth="xs">
           <Button
             variant="contained"
